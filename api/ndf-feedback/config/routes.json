@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ndf-feedbacks",
+      "handler": "ndf-feedback.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ndf-feedbacks/count",
+      "handler": "ndf-feedback.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ndf-feedbacks/:id",
+      "handler": "ndf-feedback.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/ndf-feedbacks",
+      "handler": "ndf-feedback.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/ndf-feedbacks/:id",
+      "handler": "ndf-feedback.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/ndf-feedbacks/:id",
+      "handler": "ndf-feedback.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

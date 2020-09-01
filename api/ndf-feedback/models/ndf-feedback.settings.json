@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ndf_feedbacks",
+  "info": {
+    "name": "Ndf Feedback"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "user": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    }
+  }
+}
