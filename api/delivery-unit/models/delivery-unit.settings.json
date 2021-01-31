@@ -48,6 +48,9 @@
     },
     "distance": {
       "type": "string"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

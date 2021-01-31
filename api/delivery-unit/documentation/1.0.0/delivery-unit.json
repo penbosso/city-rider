@@ -575,6 +575,9 @@
           "distance": {
             "type": "string"
           },
+          "name": {
+            "type": "string"
+          },
           "created_by": {
             "required": [
               "id",
@@ -705,6 +708,9 @@
             "type": "string"
           },
           "distance": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           },
           "created_by": {
