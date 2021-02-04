@@ -566,9 +566,6 @@
           "cost": {
             "type": "number"
           },
-          "estimatedTime": {
-            "type": "string"
-          },
           "confirmationCode": {
             "type": "string"
           },
@@ -576,6 +573,9 @@
             "type": "string"
           },
           "distance": {
+            "type": "integer"
+          },
+          "estimatedTime": {
             "type": "integer"
           },
           "created_by": {
@@ -701,9 +701,6 @@
           "cost": {
             "type": "number"
           },
-          "estimatedTime": {
-            "type": "string"
-          },
           "confirmationCode": {
             "type": "string"
           },
@@ -711,6 +708,9 @@
             "type": "string"
           },
           "distance": {
+            "type": "integer"
+          },
+          "estimatedTime": {
             "type": "integer"
           },
           "created_by": {

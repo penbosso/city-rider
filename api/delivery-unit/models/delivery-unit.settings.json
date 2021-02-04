@@ -40,9 +40,6 @@
     "cost": {
       "type": "decimal"
     },
-    "estimatedTime": {
-      "type": "string"
-    },
     "confirmationCode": {
       "type": "string"
     },
@@ -50,6 +47,9 @@
       "type": "string"
     },
     "distance": {
+      "type": "integer"
+    },
+    "estimatedTime": {
       "type": "integer"
     }
   }

@@ -14,12 +14,13 @@ module.exports = {
    */
 
   async create(ctx) {
-    ctx.request.body.distance = 10;
-    ctx.request.body.cost = calculateCost(ctx.request.body.distance);
+    ctx.request.body.distance? '' : ctx.request.body.distance = 10;
+    ctx.request.body.estimatedTime? '' : ctx.request.body.estimatedTime = 20;
+    ctx.request.body.cost = calculateCost(ctx.request.body.distance,ctx.request.body.estimatedTime);
     let entity = await strapi.services['delivery-unit'].create(ctx.request.body);
-    
+
     return sanitizeEntity({_id: entity._id, cost: entity.cost}, { model: strapi.models['delivery-unit'] });
   },
 };
 
-const calculateCost = (distance) => 20 + 0.1 * distance
+const calculateCost = (distance, estimatedTime) => 20 + 0.1 * distance + 0.15 * estimatedTime
