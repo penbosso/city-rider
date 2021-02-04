@@ -564,7 +564,7 @@
             "type": "string"
           },
           "cost": {
-            "type": "integer"
+            "type": "number"
           },
           "estimatedTime": {
             "type": "string"
@@ -572,11 +572,11 @@
           "confirmationCode": {
             "type": "string"
           },
-          "distance": {
-            "type": "string"
-          },
           "name": {
             "type": "string"
+          },
+          "distance": {
+            "type": "integer"
           },
           "created_by": {
             "required": [
@@ -699,7 +699,7 @@
             "type": "string"
           },
           "cost": {
-            "type": "integer"
+            "type": "number"
           },
           "estimatedTime": {
             "type": "string"
@@ -707,11 +707,11 @@
           "confirmationCode": {
             "type": "string"
           },
-          "distance": {
-            "type": "string"
-          },
           "name": {
             "type": "string"
+          },
+          "distance": {
+            "type": "integer"
           },
           "created_by": {
             "type": "string"
