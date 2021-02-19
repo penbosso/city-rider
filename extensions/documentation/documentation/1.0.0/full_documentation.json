@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/04/2021 10:29:42 AM"
+    "x-generation-date": "02/19/2021 8:31:01 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -567,6 +567,63 @@
             }
           }
         ]
+      }
+    },
+    "/active-delivery": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Delivery-unit"
+        ],
+        "parameters": []
       }
     },
     "/feedbacks": {
@@ -3756,6 +3813,12 @@
           "estimatedTime": {
             "type": "integer"
           },
+          "riderPic": {
+            "type": "string"
+          },
+          "riderName": {
+            "type": "string"
+          },
           "created_by": {
             "required": [
               "id",
@@ -3890,6 +3953,12 @@
           },
           "estimatedTime": {
             "type": "integer"
+          },
+          "riderPic": {
+            "type": "string"
+          },
+          "riderName": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

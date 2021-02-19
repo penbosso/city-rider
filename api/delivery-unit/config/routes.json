@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/active-delivery",
+      "handler": "delivery-unit.active",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

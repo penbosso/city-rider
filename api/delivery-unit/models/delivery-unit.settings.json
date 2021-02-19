@@ -51,6 +51,12 @@
     },
     "estimatedTime": {
       "type": "integer"
+    },
+    "riderPic": {
+      "type": "string"
+    },
+    "riderName": {
+      "type": "string"
     }
   }
 }
