@@ -20,7 +20,7 @@ module.exports = {
     ].services.jwt.getToken(ctx);
 
 console.log(decrypted._doc._id,'------------------------------------------');
-    let entities = await strapi.services['delivery-unit'].find({ status_nin: ['cancelled', 'delivered'] });
+    let entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
   },
