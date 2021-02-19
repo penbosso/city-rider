@@ -641,6 +641,9 @@
           "riderName": {
             "type": "string"
           },
+          "user": {
+            "type": "uid"
+          },
           "created_by": {
             "required": [
               "id",
@@ -781,6 +784,9 @@
           },
           "riderName": {
             "type": "string"
+          },
+          "user": {
+            "type": "uid"
           },
           "created_by": {
             "type": "string"

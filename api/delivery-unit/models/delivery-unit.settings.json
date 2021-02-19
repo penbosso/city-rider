@@ -57,6 +57,9 @@
     },
     "riderName": {
       "type": "string"
+    },
+    "user": {
+      "type": "uid"
     }
   }
 }
