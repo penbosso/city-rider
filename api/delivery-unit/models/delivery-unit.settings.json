@@ -59,7 +59,7 @@
       "type": "string"
     },
     "user": {
-      "type": "uid"
+      "type": "string"
     }
   }
 }

@@ -642,7 +642,7 @@
             "type": "string"
           },
           "user": {
-            "type": "uid"
+            "type": "string"
           },
           "created_by": {
             "required": [
@@ -786,7 +786,7 @@
             "type": "string"
           },
           "user": {
-            "type": "uid"
+            "type": "string"
           },
           "created_by": {
             "type": "string"
