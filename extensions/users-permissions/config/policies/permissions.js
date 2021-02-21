@@ -35,7 +35,7 @@ module.exports = async (ctx, next) => {
         // feel free to add your code here.
 
         return await next();
-      } catch (error) {
+      } catch (error) {console.log(error,'----------');
         return handleErrors(ctx, new Error('Invalid token: Token did not match with Strapi and user auth'), 'unauthorized');
       }
       return handleErrors(ctx, err, 'unauthorized');
