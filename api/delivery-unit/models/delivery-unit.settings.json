@@ -60,6 +60,9 @@
     },
     "user": {
       "type": "string"
+    },
+    "riderContactNumber": {
+      "type": "string"
     }
   }
 }

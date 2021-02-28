@@ -701,6 +701,9 @@
           "user": {
             "type": "string"
           },
+          "riderContactNumber": {
+            "type": "string"
+          },
           "created_by": {
             "required": [
               "id",
@@ -843,6 +846,9 @@
             "type": "string"
           },
           "user": {
+            "type": "string"
+          },
+          "riderContactNumber": {
             "type": "string"
           },
           "created_by": {

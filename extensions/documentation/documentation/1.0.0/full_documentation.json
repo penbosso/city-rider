@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "02/28/2021 9:20:44 PM"
+    "x-generation-date": "02/28/2021 9:48:53 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3879,6 +3879,9 @@
           "user": {
             "type": "string"
           },
+          "riderContactNumber": {
+            "type": "string"
+          },
           "created_by": {
             "required": [
               "id",
@@ -4021,6 +4024,9 @@
             "type": "string"
           },
           "user": {
+            "type": "string"
+          },
+          "riderContactNumber": {
             "type": "string"
           },
           "created_by": {
