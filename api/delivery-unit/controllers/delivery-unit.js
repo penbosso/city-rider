@@ -24,6 +24,18 @@ console.log(decrypted._doc._id,'------------------------------------------');
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
   },
+
+  async userDelivery(ctx) {
+    // use the current user id from the JWT in the header
+    const decrypted = await strapi.plugins[
+      'users-permissions'
+    ].services.jwt.getToken(ctx);
+    let entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id});
+
+
+    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
+
+  },
   /**
    * Create a record.
    *
