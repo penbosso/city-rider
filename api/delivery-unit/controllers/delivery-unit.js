@@ -40,8 +40,10 @@ module.exports = {
 
     // todays delivery
     let today = new Date().toISOString().slice(0, 10)
-    const todaysEntities = entities.filter(entity => entity.updatedAt.toISOString().slice(0, 10) == today)
-
+    const todaysEntities = entities.filter(entity => entity.updatedAt.toISOString().slice(0, 10) == today);
+    data.totalCostToday = todaysEntities.reduce((total, entity)=> {
+      return total + entity.cost;
+    },0);
     data.itemsDeleiveredToday = todaysEntities.filter(entity => entity.status == 'delivered').length;
     data.itemsPendingToday = todaysEntities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
     data.itemsCancelledToday = todaysEntities.filter(entity => entity.status == 'cancelled').length
@@ -50,7 +52,9 @@ module.exports = {
     // This months deleivery
     let monthDate = new Date();
     const monthEntities = entities.filter(entity => entity.updatedAt.getFullYear() == monthDate.getFullYear() && entity.updatedAt.getMonth() == monthDate.getMonth())
-
+    data.totalCostMonth = monthEntities.reduce((total, entity)=> {
+      return total + entity.cost;
+    },0);
     data.itemsDeleiveredMonth = monthEntities.filter(entity => entity.status == 'delivered').length;
     data.itemsPendingMonth = monthEntities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
     data.itemsCancelledMonth = monthEntities.filter(entity => entity.status == 'cancelled').length
