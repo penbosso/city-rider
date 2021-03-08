@@ -19,10 +19,44 @@ module.exports = {
       'users-permissions'
     ].services.jwt.getToken(ctx);
 
-console.log(decrypted._doc._id,'------------------------------------------');
     let entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
+  },
+
+  async statistics() {
+    // all delivery
+    const entities = await strapi.services['delivery-unit'].find();
+    const data = {};
+    data.totalCost = entities.reduce((total, entity)=> {
+      return total + entity.cost;
+    },0);
+
+    data.itemsDeleivered = entities.filter(entity => entity.status == 'delivered').length;
+    data.itemsPending = entities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
+    data.itemsCancelled = entities.filter(entity => entity.status == 'cancelled').length
+    data.allDeliveries = entities.length;
+
+
+    // todays delivery
+    let today = new Date().toISOString().slice(0, 10)
+    const todaysEntities = entities.filter(entity => entity.updatedAt.toISOString().slice(0, 10) == today)
+
+    data.itemsDeleiveredToday = todaysEntities.filter(entity => entity.status == 'delivered').length;
+    data.itemsPendingToday = todaysEntities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
+    data.itemsCancelledToday = todaysEntities.filter(entity => entity.status == 'cancelled').length
+    data.allDeliveriesToday = todaysEntities.length;
+
+    // This months deleivery
+    let monthDate = new Date();
+    const monthEntities = entities.filter(entity => entity.updatedAt.getFullYear() == monthDate.getFullYear() && entity.updatedAt.getMonth() == monthDate.getMonth())
+
+    data.itemsDeleiveredMonth = monthEntities.filter(entity => entity.status == 'delivered').length;
+    data.itemsPendingMonth = monthEntities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
+    data.itemsCancelledMonth = monthEntities.filter(entity => entity.status == 'cancelled').length
+    data.allDeliveriesMonth = monthEntities.length;
+
+    return data;
   },
 
   async userDelivery(ctx) {

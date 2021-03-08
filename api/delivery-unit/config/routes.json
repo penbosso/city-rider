@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/delivery-units/statistics",
+      "handler": "delivery-unit.statistics",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/user-delivery-units",
       "handler": "delivery-unit.userDelivery",
       "config": {
