@@ -32,7 +32,7 @@ module.exports = {
       return total + entity.cost;
     },0);
 
-    data.itemsDeleivered = entities.filter(entity => entity.status == 'delivered').length;
+    data.itemsDelivered = entities.filter(entity => entity.status == 'delivered').length;
     data.itemsPending = entities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
     data.itemsCancelled = entities.filter(entity => entity.status == 'cancelled').length
     data.allDeliveries = entities.length;
@@ -44,18 +44,18 @@ module.exports = {
     data.totalCostToday = todaysEntities.reduce((total, entity)=> {
       return total + entity.cost;
     },0);
-    data.itemsDeleiveredToday = todaysEntities.filter(entity => entity.status == 'delivered').length;
+    data.itemsDeliveredToday = todaysEntities.filter(entity => entity.status == 'delivered').length;
     data.itemsPendingToday = todaysEntities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
     data.itemsCancelledToday = todaysEntities.filter(entity => entity.status == 'cancelled').length
     data.allDeliveriesToday = todaysEntities.length;
 
-    // This months deleivery
+    // This months delivery
     let monthDate = new Date();
     const monthEntities = entities.filter(entity => entity.updatedAt.getFullYear() == monthDate.getFullYear() && entity.updatedAt.getMonth() == monthDate.getMonth())
     data.totalCostMonth = monthEntities.reduce((total, entity)=> {
       return total + entity.cost;
     },0);
-    data.itemsDeleiveredMonth = monthEntities.filter(entity => entity.status == 'delivered').length;
+    data.itemsDeliveredMonth = monthEntities.filter(entity => entity.status == 'delivered').length;
     data.itemsPendingMonth = monthEntities.filter(entity => entity.status != 'delivered' || entity.status != 'cancelled').length
     data.itemsCancelledMonth = monthEntities.filter(entity => entity.status == 'cancelled').length
     data.allDeliveriesMonth = monthEntities.length;
