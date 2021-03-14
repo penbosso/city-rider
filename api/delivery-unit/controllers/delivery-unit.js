@@ -87,13 +87,14 @@ module.exports = {
     ].services.jwt.getToken(ctx);
     ctx.request.body.user = decrypted._doc._id;
 
-    if(ctx.request.body.matrix) {
+    if(ctx.request.body.matrixBug) {
       const duration = ctx.request.body.matrix.durations[0][0] + ctx.request.body.matrix.durations[0][1];
       const distances = ctx.request.body.matrix.durations[0][0] + ctx.request.body.matrix.distances[0][1];
 
       ctx.request.body.estimatedTime = duration;
       ctx.request.body.distance = distances;
     }
+    ctx.request.body.status = "pending";
     ctx.request.body.distance? '' : ctx.request.body.distance = 10;
     ctx.request.body.estimatedTime? '' : ctx.request.body.estimatedTime = 20;
     ctx.request.body.cost = calculateCost(ctx.request.body.distance,ctx.request.body.estimatedTime);
