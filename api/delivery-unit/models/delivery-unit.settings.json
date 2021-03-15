@@ -63,6 +63,9 @@
     },
     "riderContactNumber": {
       "type": "string"
+    },
+    "destinationContactNumber": {
+      "type": "string"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "paths": {
-    "/delivery-units": {
+    "/settings": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -10,10 +10,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Setting"
                   }
                 }
               }
@@ -52,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Delivery-unit"
+          "Setting"
         ],
         "parameters": [
           {
@@ -202,11 +201,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Setting"
                 }
               }
             }
@@ -244,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Delivery-unit"
+          "Setting"
         ],
         "requestBody": {
           "description": "",
@@ -252,14 +247,14 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDelivery-unit"
+                "$ref": "#/components/schemas/NewSetting"
               }
             }
           }
         }
       }
     },
-    "/delivery-units/statistics": {
+    "/settings/count": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -270,8 +265,8 @@
               "application/json": {
                 "schema": {
                   "properties": {
-                    "foo": {
-                      "type": "string"
+                    "count": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -311,12 +306,12 @@
         },
         "summary": "",
         "tags": [
-          "Delivery-unit"
+          "Setting"
         ],
         "parameters": []
       }
     },
-    "/user-delivery-units": {
+    "/settings/{id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -326,11 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Setting"
                 }
               }
             }
@@ -368,121 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Delivery-unit"
-        ],
-        "parameters": []
-      }
-    },
-    "/delivery-units/count": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Delivery-unit"
-        ],
-        "parameters": []
-      }
-    },
-    "/delivery-units/{id}": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Delivery-unit"
+          "Setting"
         ],
         "parameters": [
           {
@@ -506,11 +383,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Setting"
                 }
               }
             }
@@ -548,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Delivery-unit"
+          "Setting"
         ],
         "requestBody": {
           "description": "",
@@ -556,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewDelivery-unit"
+                "$ref": "#/components/schemas/NewSetting"
               }
             }
           }
@@ -622,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Delivery-unit"
+          "Setting"
         ],
         "parameters": [
           {
@@ -637,68 +510,11 @@
           }
         ]
       }
-    },
-    "/active-delivery": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Delivery-unit"
-        ],
-        "parameters": []
-      }
     }
   },
   "components": {
     "schemas": {
-      "Delivery-unit": {
+      "Setting": {
         "required": [
           "id"
         ],
@@ -706,63 +522,11 @@
           "id": {
             "type": "string"
           },
-          "deliveryVehicle": {
-            "type": "string"
-          },
-          "deliveryType": {
-            "type": "string",
-            "default": "normal"
-          },
-          "description": {
-            "type": "string"
-          },
-          "sourceAddress": {
-            "type": "string"
-          },
-          "destinationAddress": {
-            "type": "string"
-          },
-          "destinationContactName": {
-            "type": "string"
-          },
-          "sourceContactName": {
-            "type": "string"
-          },
-          "sourceContactNumber": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "cost": {
+          "pricePerKm": {
             "type": "number"
           },
-          "confirmationCode": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "distance": {
-            "type": "integer"
-          },
-          "estimatedTime": {
-            "type": "integer"
-          },
-          "riderPic": {
-            "type": "string"
-          },
-          "riderName": {
-            "type": "string"
-          },
-          "user": {
-            "type": "string"
-          },
-          "riderContactNumber": {
-            "type": "string"
-          },
-          "destinationContactNumber": {
-            "type": "string"
+          "basePrice": {
+            "type": "number"
           },
           "created_by": {
             "required": [
@@ -854,65 +618,13 @@
           }
         }
       },
-      "NewDelivery-unit": {
+      "NewSetting": {
         "properties": {
-          "deliveryVehicle": {
-            "type": "string"
-          },
-          "deliveryType": {
-            "type": "string",
-            "default": "normal"
-          },
-          "description": {
-            "type": "string"
-          },
-          "sourceAddress": {
-            "type": "string"
-          },
-          "destinationAddress": {
-            "type": "string"
-          },
-          "destinationContactName": {
-            "type": "string"
-          },
-          "sourceContactName": {
-            "type": "string"
-          },
-          "sourceContactNumber": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          },
-          "cost": {
+          "pricePerKm": {
             "type": "number"
           },
-          "confirmationCode": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "distance": {
-            "type": "integer"
-          },
-          "estimatedTime": {
-            "type": "integer"
-          },
-          "riderPic": {
-            "type": "string"
-          },
-          "riderName": {
-            "type": "string"
-          },
-          "user": {
-            "type": "string"
-          },
-          "riderContactNumber": {
-            "type": "string"
-          },
-          "destinationContactNumber": {
-            "type": "string"
+          "basePrice": {
+            "type": "number"
           },
           "created_by": {
             "type": "string"
@@ -924,5 +636,9 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    {
+      "name": "Setting"
+    }
+  ]
 }

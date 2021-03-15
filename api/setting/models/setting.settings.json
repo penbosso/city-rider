@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "settings",
+  "info": {
+    "name": "setting"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "pricePerKm": {
+      "type": "decimal"
+    },
+    "basePrice": {
+      "type": "decimal"
+    }
+  }
+}
