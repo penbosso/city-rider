@@ -764,6 +764,12 @@
           "destinationContactNumber": {
             "type": "string"
           },
+          "riderId": {
+            "type": "string"
+          },
+          "riderTelephone": {
+            "type": "string"
+          },
           "created_by": {
             "required": [
               "id",
@@ -912,6 +918,12 @@
             "type": "string"
           },
           "destinationContactNumber": {
+            "type": "string"
+          },
+          "riderId": {
+            "type": "string"
+          },
+          "riderTelephone": {
             "type": "string"
           },
           "created_by": {
