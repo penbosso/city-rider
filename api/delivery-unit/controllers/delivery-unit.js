@@ -18,9 +18,14 @@ module.exports = {
     const decrypted = await strapi.plugins[
       'users-permissions'
     ].services.jwt.getToken(ctx);
+    console.log(decrypted._doc.Role)
 
-    let entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
-
+    let entities;
+    if(decrypted._doc.Role ==="user") {
+      entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
+    } else {
+      entities = await strapi.services['delivery-unit'].find({redierId:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
+    }
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] })).reverse();
   },
 
