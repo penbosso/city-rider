@@ -107,7 +107,16 @@ module.exports = {
     const decrypted = await strapi.plugins[
       'users-permissions'
     ].services.jwt.getToken(ctx);
-    let entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id});
+    let entities;
+    if(decrypted._doc.Role ==="user") {
+      entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id});
+      entities = entities.filter(entity => {
+        if(entity.riderId && entity.riderId !='') return true;
+        return false;
+      })
+    } else {
+      entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id});
+    }
 
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
