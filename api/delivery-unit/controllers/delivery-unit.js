@@ -7,6 +7,27 @@ const { sanitizeEntity } = require('strapi-utils');
  */
 
 module.exports = {
+  /**
+   * Retrieve records.
+   *
+   * @return {Array}
+   */
+
+  async find(ctx) {
+    let entities;
+    console.log("QUERY", ctx.query);
+    if (ctx.query._q) {
+      entities = await strapi.services.restaurant.search(ctx.query);
+    } else {
+      entities = await strapi.services.restaurant.find(ctx.query);
+    }
+    entities = entities.filter(entity => {
+      if(entity.riderId && entity.riderId !='') return true;
+      return false;
+    })
+
+    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.restaurant }));
+  },
 
   /**
    * delivery unittes that are not yet delivered or cancelled.
@@ -23,15 +44,28 @@ module.exports = {
     let entities;
     if(decrypted._doc.Role ==="user") {
       entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
+      entities = entities.filter(entity => {
+        if(entity.riderId && entity.riderId !='') return true;
+        return false;
+      })
     } else {
-      entities = await strapi.services['delivery-unit'].find({redierId:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
+      entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id, status_nin: ['cancelled', 'delivered'] });
     }
+    entities = entities.filter(entity => {
+      if(entity.riderId && entity.riderId !='') return true;
+      return false;
+    })
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] })).reverse();
   },
 
   async statistics() {
     // all delivery
-    const entities = await strapi.services['delivery-unit'].find();
+    let tempEntities = await strapi.services['delivery-unit'].find();
+    const entities = tempEntities.filter(entity => {
+      if(entity.riderId && entity.riderId !='') return true;
+      return false;
+    })
+    data.numberOfDeliveriesWithoutRider = tempEntities.length - entities.length;
     const data = {};
     data.totalCost = entities.reduce((total, entity)=> {
       return total + entity.cost;
