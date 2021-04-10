@@ -120,6 +120,62 @@ module.exports = {
 
     return sanitizeEntity({_id: entity._id, cost: entity.cost}, { model: strapi.models['delivery-unit'] });
   },
+
+  /**
+   * Update a record.
+   *
+   * @return {Object}
+   */
+
+   async update(ctx) {
+    const decrypted = await strapi.plugins[
+      'users-permissions'
+    ].services.jwt.getToken(ctx);
+    const { id } = ctx.params;
+    const logData = {};
+    logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LasttName"];
+    logData.action="Update";
+
+    let entity;
+    if (ctx.is('multipart')) {
+      const { data, files } = parseMultipartData(ctx);
+      logData.data = data;
+      strapi.services['log'].create(logData)
+      entity = await strapi.services.services['delivery-unit'].update({ id }, data, {
+        files,
+      });
+    } else {
+      logData.data = ctx.request.body;
+      strapi.services['log'].create(logData)
+      entity = await strapi.services.services['delivery-unit'].update({ id }, ctx.request.body);
+    }
+
+    return sanitizeEntity(entity, { model: strapi.models.services['delivery-unit'] });
+  },
+
+  /**
+   * Delete a record.
+   *
+   * @return {Object}
+   */
+
+   async delete(ctx) {
+    const decrypted = await strapi.plugins[
+      'users-permissions'
+    ].services.jwt.getToken(ctx);
+    const { id } = ctx.params;
+    const logData = {};
+    logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LasttName"];
+    logData.action="Delete";
+
+
+    const entity = await strapi.services.services['delivery-unit'].delete({ id });
+    logData.data = entity;
+    strapi.services['log'].create(logData)
+
+    return sanitizeEntity(entity, { model: strapi.models.services['delivery-unit'] });
+  },
+
 };
 
 // one km is equivalent to 1 ghc, 100 unit of duration is to 1 ghc
