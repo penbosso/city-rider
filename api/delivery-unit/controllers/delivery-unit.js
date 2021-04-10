@@ -8,28 +8,6 @@ const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
   /**
-   * Retrieve records.
-   *
-   * @return {Array}
-   */
-
-  async find(ctx) {
-    let entities;
-    console.log("QUERY", ctx.query);
-    if (ctx.query._q) {
-      entities = await strapi.services.restaurant.search(ctx.query);
-    } else {
-      entities = await strapi.services.restaurant.find(ctx.query);
-    }
-    entities = entities.filter(entity => {
-      if(entity.riderId && entity.riderId !='') return true;
-      return false;
-    })
-
-    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.restaurant }));
-  },
-
-  /**
    * delivery unittes that are not yet delivered or cancelled.
    *
    * @return {Object}
@@ -60,12 +38,8 @@ module.exports = {
 
   async statistics() {
     // all delivery
-    let tempEntities = await strapi.services['delivery-unit'].find();
-    const entities = tempEntities.filter(entity => {
-      if(entity.riderId && entity.riderId !='') return true;
-      return false;
-    })
-    data.numberOfDeliveriesWithoutRider = tempEntities.length - entities.length;
+    const entities = await strapi.services['delivery-unit'].find();
+
     const data = {};
     data.totalCost = entities.reduce((total, entity)=> {
       return total + entity.cost;
