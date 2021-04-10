@@ -118,9 +118,7 @@ module.exports = {
       entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id});
     }
 
-
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
-
   },
   /**
    * Create a record.
