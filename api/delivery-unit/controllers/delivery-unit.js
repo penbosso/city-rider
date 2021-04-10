@@ -83,13 +83,13 @@ module.exports = {
     ].services.jwt.getToken(ctx);
     let entities;
     if(decrypted._doc.Role ==="user") {
-      entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id});
+      entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, _sort: 'createdAt:desc'});
       entities = entities.filter(entity => {
         if(entity.riderId && entity.riderId !='') return true;
         return false;
       })
     } else {
-      entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id});
+      entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id, _sort: 'createdAt:desc'});
     }
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] }));
@@ -110,6 +110,7 @@ module.exports = {
     let distance = 10
     if(ctx.request.body.matrix) {
       distance = parseFloat(ctx.request.body.matrix.destinations[0]["snapped_distance"]);
+      console.log('snap distance ->', distance)
     }
 
     ctx.request.body.status = "pending";
