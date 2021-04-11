@@ -23,7 +23,7 @@ module.exports = {
     const { id } = ctx.params;
     const logData = {};
     logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LastName"];
-    logData.action="Update setting";
+    logData.action="updated setting";
 
     let entity;
     if (ctx.is('multipart')) {
