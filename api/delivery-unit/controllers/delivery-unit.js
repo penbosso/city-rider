@@ -133,7 +133,7 @@ module.exports = {
     ].services.jwt.getToken(ctx);
     const { id } = ctx.params;
     const logData = {};
-    logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LasttName"];
+    logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LastName"];
     logData.action="Update";
 
     let entity;
