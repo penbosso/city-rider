@@ -141,13 +141,13 @@ module.exports = {
       const { data, files } = parseMultipartData(ctx);
       logData.data = data;
       strapi.services['log'].create(logData)
-      entity = await strapi.services.services['delivery-unit'].update({ id }, data, {
+      entity = await strapi.services['delivery-unit']['delivery-unit'].update({ id }, data, {
         files,
       });
     } else {
       logData.data = ctx.request.body;
       strapi.services['log'].create(logData)
-      entity = await strapi.services.services['delivery-unit'].update({ id }, ctx.request.body);
+      entity = await strapi.services['delivery-unit']['delivery-unit'].update({ id }, ctx.request.body);
     }
 
     return sanitizeEntity(entity, { model: strapi.models.services['delivery-unit'] });
@@ -169,7 +169,7 @@ module.exports = {
     logData.action="Delete";
 
 
-    const entity = await strapi.services.services['delivery-unit'].delete({ id });
+    const entity = await strapi.services['delivery-unit']['delivery-unit'].delete({ id });
     logData.data = entity;
     strapi.services['log'].create(logData)
 
