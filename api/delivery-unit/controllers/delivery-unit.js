@@ -134,7 +134,7 @@ module.exports = {
     const { id } = ctx.params;
     const logData = {};
     logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LastName"];
-    logData.action="Update";
+    logData.action="Update Deliviery Item";
 
     let entity;
     if (ctx.is('multipart')) {
@@ -166,7 +166,7 @@ module.exports = {
     const { id } = ctx.params;
     const logData = {};
     logData.name = decrypted._doc["FirstName"] + " " + decrypted._doc["LastName"];
-    logData.action="Delete";
+    logData.action="Delete Deliviery Item";
 
 
     const entity = await strapi.services['delivery-unit'].delete({ id });
