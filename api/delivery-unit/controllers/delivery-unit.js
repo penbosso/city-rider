@@ -29,10 +29,6 @@ module.exports = {
       if(entity.riderId && entity.riderId !='') return true;
       return false;
     })
-    entities = entities.filter(entity => {
-      if(entity.riderId && entity.riderId !='') return true;
-      return false;
-    })
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models['delivery-unit'] })).reverse();
   },
 
@@ -83,9 +79,9 @@ module.exports = {
     ].services.jwt.getToken(ctx);
     let entities;
     if(decrypted._doc.Role ==="user") {
-      entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, _sort: 'createdAt:desc'});
+      entities = await strapi.services['delivery-unit'].find({user:decrypted._doc._id, status_in: ['cancelled', 'delivered'], _sort: 'createdAt:desc'});
     } else {
-      entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id, _sort: 'createdAt:desc'});
+      entities = await strapi.services['delivery-unit'].find({riderId:decrypted._doc._id, status_in: ['cancelled', 'delivered'], _sort: 'createdAt:desc'});
     }
     entities = entities.filter(entity => {
       if(entity.riderId && entity.riderId !='') return true;
