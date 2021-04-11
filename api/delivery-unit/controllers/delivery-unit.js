@@ -139,13 +139,13 @@ module.exports = {
     let entity;
     if (ctx.is('multipart')) {
       const { data, files } = parseMultipartData(ctx);
-      logData.data = data;
+      logData.data = JSON.stringify(data);
       strapi.services['log'].create(logData)
       entity = await strapi.services['delivery-unit'].update({ id }, data, {
         files,
       });
     } else {
-      logData.data = ctx.request.body;
+      logData.data = JSON.stringify(ctx.request.body);
       strapi.services['log'].create(logData)
       entity = await strapi.services['delivery-unit'].update({ id }, ctx.request.body);
     }
@@ -170,7 +170,7 @@ module.exports = {
 
 
     const entity = await strapi.services['delivery-unit'].delete({ id });
-    logData.data = entity;
+    logData.data = JSON.stringify(entity);
     strapi.services['log'].create(logData)
 
     return sanitizeEntity(entity, { model: strapi.models.services['delivery-unit'] });
