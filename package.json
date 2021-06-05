@@ -2,7 +2,7 @@
   "name": "city-rider-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "City rider application",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -30,8 +30,8 @@
     "uuid": "85e7adc0-3270-4960-8710-e1c5a39b20ef"
   },
   "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
+    "node": "^10.0.0",
+    "npm": "^6.0.0"
   },
   "license": "MIT"
 }
