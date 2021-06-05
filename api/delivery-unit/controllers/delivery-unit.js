@@ -146,7 +146,7 @@ module.exports = {
       entity = await strapi.services['delivery-unit'].update({ id }, ctx.request.body);
     }
 
-    return sanitizeEntity(entity, { model: strapi.models.services['delivery-unit'] });
+    return sanitizeEntity(entity, { model: strapi.models['delivery-unit'] });
   },
 
   /**
@@ -169,7 +169,7 @@ module.exports = {
     logData.data = JSON.stringify(entity);
     strapi.services['log'].create(logData)
 
-    return sanitizeEntity(entity, { model: strapi.models.services['delivery-unit'] });
+    return sanitizeEntity(entity, { model: strapi.models['delivery-unit'] });
   },
 
 };
