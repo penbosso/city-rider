@@ -104,10 +104,12 @@ module.exports = {
     ctx.request.body.user = decrypted._doc._id;
 
     let distance = 10
-    if(ctx.request.body.matrix) {
+    if (ctx.request.body.matrix && ctx.request.body.matrix.destinations[0]) {
       distance = parseFloat(ctx.request.body.matrix.destinations[0]["snapped_distance"]);
       console.log('snap distance ->', distance)
-    }
+    } else {
+      return handleErrors(ctx, new Error('Could not get distance between locations. Please try again'), 'Bad data');
+      }
 
     ctx.request.body.status = "pending";
     const settings = await strapi.services.setting.findOne({ id:"604e9d1cc687f574e8e1c3c5" });
