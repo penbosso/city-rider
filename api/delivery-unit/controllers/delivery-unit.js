@@ -104,8 +104,8 @@ module.exports = {
     ctx.request.body.user = decrypted._doc._id;
 
     let distance = 10
-    if (ctx.request.body.matrix && ctx.request.body.matrix.destinations[0]) {
-      distance = parseFloat(ctx.request.body.matrix.destinations[0]["snapped_distance"]);
+    if (ctx.request.body.matrix && ctx.request.body.matrix.rows) {
+      distance = parseFloat(ctx.request.body.matrix.rows["elements"]["distance"]["value"]);
       console.log('snap distance ->', distance)
     } else {
       return handleErrors(ctx, new Error('Could not get distance between locations. Please try again'), 'Bad data');
